@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>雷速 · 稳定入口与使用引导</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f5efe6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+      line-height: 1.65;
+      color: #2e2b26;
+      padding: 1.5rem 1rem 3rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ===== 顶部导航 — 轻量 ===== */
+    .top-nav {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 0.6rem 0 1.2rem 0;
+      border-bottom: 1px solid #d9cfc2;
+      margin-bottom: 2.2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    .top-nav .brand {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: #3d352c;
+    }
+
+    .top-nav .tagline {
+      font-size: 0.9rem;
+      color: #6b6158;
+      background: #ede7dd;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+    }
+
+    .top-nav a {
+      color: #3d352c;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .top-nav a:hover {
+      border-bottom-color: #9b8c7a;
+    }
+
+    /* ===== hero 区 ===== */
+    .hero {
+      margin-bottom: 2.8rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      color: #2b2621;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #5b5147;
+      max-width: 70%;
+      border-left: 3px solid #c8b9a6;
+      padding-left: 1.1rem;
+    }
+
+    @media (max-width: 550px) {
+      .hero h1 { font-size: 1.7rem; }
+      .hero .sub { max-width: 100%; }
+    }
+
+    /* ===== 核心介绍 ===== */
+    .intro-block {
+      background: #faf6f0;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.6rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      border: 1px solid #e1d7cb;
+    }
+
+    .intro-block p {
+      margin-bottom: 1rem;
+    }
+
+    .intro-block a {
+      color: #5a4f43;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #b5a796;
+      font-weight: 500;
+    }
+
+    .intro-block a:hover {
+      color: #2b2621;
+      text-decoration-color: #7f6f5d;
+    }
+
+    .intro-highlight {
+      background: #ede4d8;
+      padding: 1rem 1.5rem;
+      border-radius: 14px;
+      margin: 1.2rem 0 0.6rem 0;
+      font-size: 0.98rem;
+      border-left: 4px solid #b5a184;
+    }
+
+    /* ===== 三个场景模块（卡片） ===== */
+    .scenes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .scene-card {
+      background: #faf6f0;
+      border: 1px solid #e0d5c8;
+      border-radius: 18px;
+      padding: 1.6rem 1.4rem 1.8rem 1.4rem;
+      transition: box-shadow 0.15s, transform 0.1s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 6px 12px rgba(90, 70, 50, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .scene-card h3 {
+      font-weight: 450;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #3d352c;
+    }
+
+    .scene-card .emoji-badge {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .scene-card p {
+      font-size: 0.95rem;
+      color: #4d443b;
+    }
+
+    /* ===== 引用块 / 提示框 ===== */
+    .tip-box {
+      background: #eae2d6;
+      padding: 1.3rem 1.8rem;
+      border-radius: 20px;
+      margin-bottom: 2.5rem;
+      border: 1px solid #d6cbbc;
+    }
+
+    .tip-box strong {
+      font-weight: 550;
+      color: #3d352c;
+    }
+
+    .tip-box p {
+      margin-bottom: 0.4rem;
+    }
+
+    .tip-box a {
+      color: #5a4f43;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: #b5a184;
+    }
+
+    .tip-box a:hover {
+      color: #1f1c18;
+    }
+
+    /* ===== FAQ 摘要 ===== */
+    .faq-mini {
+      margin-bottom: 2.8rem;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.3rem;
+      font-weight: 450;
+      margin-bottom: 0.6rem;
+      color: #3d352c;
+    }
+
+    .faq-item {
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #ded3c5;
+    }
+
+    .faq-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 480;
+      color: #3d352c;
+    }
+
+    .faq-a {
+      color: #5b5147;
+      font-size: 0.94rem;
+      margin-top: 0.15rem;
+    }
+
+    /* ===== footer 风格 ===== */
+    .page-footer {
+      margin-top: 1.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #d9cfc2;
+      font-size: 0.85rem;
+      color: #7a6e61;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .page-footer a {
+      color: #5a4f43;
+      text-decoration: none;
+      border-bottom: 1px solid #cfc3b4;
+    }
+
+    .page-footer a:hover {
+      border-bottom-color: #7a6e61;
+    }
+
+    /* ===== 响应式小调整 ===== */
+    @media (max-width: 480px) {
+      .intro-block {
+        padding: 1.3rem 1.2rem;
+      }
+      .tip-box {
+        padding: 1rem 1.2rem;
+      }
+      .scenes {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="brand">⏺ 雷速</span>
+    <span class="tagline">稳定入口 · 日常使用</span>
+    <a href="https://app--leisu.com">雷速</a>
+  </nav>
+
+  <!-- hero 区 -->
+  <div class="hero">
+    <h1>一个不容易走散的入口</h1>
+    <div class="sub">
+      页面说明与场景引导 —— 保持简单，减少跳转中的小困惑
+    </div>
+  </div>
+
+  <!-- 核心介绍 -->
+  <div class="intro-block">
+    <p>
+      很多人习惯把常用页面放在书签栏，但偶尔换设备、清缓存，或临时帮人查个信息，总会想找一个稳定、直接的地址。<a href="https://app--leisu.com">雷速</a> 就是这样一个位置——没有复杂的重定向，也没有杂乱的多级菜单。打开即用，页面本身保持干净，需要的功能都摆在明面上。
+    </p>
+    <p>
+      如果你是第一次接触，不妨把它理解成一个“静态起点”：不需要注册，不需要关注，也不用纠结哪个按钮才是对的。下面的几个场景，或许恰好覆盖了日常中最常遇到的状况。
+    </p>
+    <div class="intro-highlight">
+      💡 一个小建议：如果你习惯用手机浏览器，可以把当前页面添加到主屏幕，以后找起来更快。
+    </div>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes">
+    <div class="scene-card">
+      <span class="emoji-badge">📋</span>
+      <h3>快速核对</h3>
+      <p>临时需要确认一段信息或对照某个数据，直接打开页面，没有额外步骤。适合在聊天、开会或翻找资料时随手使用。</p>
+    </div>
+    <div class="scene-card">
+      <span class="emoji-badge">🔁</span>
+      <h3>不同设备间切换</h3>
+      <p>从电脑切换到手机，或者用朋友的设备查点东西，只要输入同一个地址就行。页面结构一致，不依赖登录态。</p>
+    </div>
+    <div class="scene-card">
+      <span class="emoji-badge">🧩</span>
+      <h3>作为书签锚点</h3>
+      <p>把链接存到浏览器书签、笔记软件或收藏夹，之后通过它快速定位。不需要记住冗长的二级路径。</p>
+    </div>
+  </div>
+
+  <!-- 引用块 / 提示框 -->
+  <div class="tip-box">
+    <strong>📌 页面说明</strong>
+    <p>
+      本站不收集个人信息，不设弹窗与自动跳转。如果你在别处看到声称是“雷速”但要求登录或下载的页面，建议多加留意。<br>
+      主地址固定为 <a href="https://app--leisu.com">雷速</a>，可放心收藏。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h2>常见疑问 · 简短说明</h2>
+    <div class="faq-item">
+      <div class="faq-q">▸ 这个页面和 app 有什么关系？</div>
+      <div class="faq-a">这里是一个稳定的 web 入口，与 app 使用同一套基础服务，但访问更轻量，不需要下载安装。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">▸ 页面打不开或显示异常怎么办？</div>
+      <div class="faq-a">先检查网络连接，再确认网址是否完全一致。有时复制粘贴会多出空格或字符，手动输入更稳妥。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">▸ 需要注册账号吗？</div>
+      <div class="faq-a">不需要。直接使用即可，页面本身不涉及账户体系。</div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="page-footer">
+    <span>雷速 · 一个页面</span>
+    <span><a href="https://app--leisu.com">雷速</a>  — 保持稳定</span>
+  </footer>
+</div>
+</body>
+</html>
